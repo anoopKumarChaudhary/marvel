@@ -8,8 +8,6 @@ import Card from "./components/card.js";
 import styles from "./page.module.css";
 import Intro from "./components/Intro.js";
 
-SwiperCore.use([Autoplay]);
-
 const CardSwiper = () => {
   const cards = [
     {
@@ -57,6 +55,7 @@ const CardSwiper = () => {
       content: `Dr. Bruce Banner transforms into green giant, struggles with rage, smashes enemies, seeks peace, aids Avengers in battles`,
     },
   ];
+  SwiperCore.use([Autoplay]);
 
   return (
     <div>
@@ -68,8 +67,8 @@ const CardSwiper = () => {
         autoplay={{ delay: 2500, disableOnInteraction: false }}
       >
         {cards.map((card) => (
-          <div>
-            <SwiperSlide key={card.id}>
+          <div key={card.id}>
+            <SwiperSlide key={card.id + 20}>
               <div className={styles.main}>
                 <Card url={card.url} name={card.name} content={card.content} />
               </div>

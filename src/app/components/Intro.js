@@ -1,7 +1,8 @@
 import React from "react";
+
 import styles from "../styles/intro.module.css";
 
-export default function ({ url }) {
+export default function Intro({ url }) {
   return (
     <div className={styles.container}>
       <video
