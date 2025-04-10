@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/card.module.css";
 
-export default function Card({ url, name, content }) {
+function Card({ url, name, content }) {
   return (
     <div style={{ backgroundImage: `url(${url})` }} className={styles.main}>
       <h1 className={styles.head}>{name}</h1>
@@ -9,3 +9,5 @@ export default function Card({ url, name, content }) {
     </div>
   );
 }
+
+export default React.memo(Card);

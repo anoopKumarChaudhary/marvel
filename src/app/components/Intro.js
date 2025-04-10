@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "../styles/intro.module.css";
 
-export default function Intro({ url }) {
+function Intro({ url }) {
   return (
     <div className={styles.container}>
       <video
@@ -16,3 +16,5 @@ export default function Intro({ url }) {
     </div>
   );
 }
+
+export default React.memo(Intro);
