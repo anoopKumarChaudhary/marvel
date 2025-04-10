@@ -1,95 +1,96 @@
-import Image from "next/image";
+"use client"; // Mark as client-side
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import Card from "./components/card.js";
 import styles from "./page.module.css";
+import Intro from "./components/Intro.js";
 
-export default function Home() {
+SwiperCore.use([Autoplay]);
+
+const CardSwiper = () => {
+  const cards = [
+    {
+      id: 1,
+      url: "./venom.webp",
+      name: "VENOM",
+      content: `Venom, in Marvel Comics, is an alien symbiote from the planet Klyntar,
+        first appearing in The Amazing Spider-Man #252 (1984).`,
+    },
+    {
+      id: 2,
+      url: "./ironman.jpg",
+      name: "IRON MAN",
+      content: `Genius billionaire Tony Stark builds a high-tech suit, fights villains, leads Avengers, sacrifices himself to save universe.`,
+    },
+
+    {
+      id: 3,
+      url: "./thor.jpg",
+      name: "THOR",
+      content: `Norse god of thunder, wields Mjolnir, protects Asgard, battles Loki, joins Avengers, embraces heroism with humor and heart`,
+    },
+    {
+      id: 4,
+      url: "./captain.jpg",
+      name: "CAPTAIN AMERICA",
+      content: `Steve Rogers, super-soldier from WWII, wields shield, leads Avengers, fights for justice, embodies courage and honor.`,
+    },
+    {
+      id: 5,
+      url: "./spider.jpg",
+      name: "SPIDER MAN",
+      content: `Peter Parker, web-slinging teen, balances school and heroics, fights crime, learns responsibility, brings wit to Avengers’ missions.`,
+    },
+    {
+      id: 6,
+      url: "./panther.jpg",
+      name: "BLACK PANTHER",
+      content: `T’Challa, king of Wakanda, dons vibranium suit, defends nation, promotes unity, fights threats, embodies strength and wisdom.`,
+    },
+    {
+      id: 7,
+      url: "./hulk.jpg",
+      name: "HULK",
+      content: `Dr. Bruce Banner transforms into green giant, struggles with rage, smashes enemies, seeks peace, aids Avengers in battles`,
+    },
+  ];
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div>
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={1}
+        loop={true}
+        speed={1200}
+        autoplay={{ delay: 2500, disableOnInteraction: false }}
+      >
+        {cards.map((card) => (
+          <div>
+            <SwiperSlide key={card.id}>
+              <div className={styles.main}>
+                <Card url={card.url} name={card.name} content={card.content} />
+              </div>
+            </SwiperSlide>
+          </div>
+        ))}
+      </Swiper>
+      <Intro url="/intro.mp4" />
+      <Card
+        url="/thanos.jpg"
+        name="THANOS"
+        content='I am... inevitable" and "Dread it. Run from it. Destiny arrives all the same'
+      />
+      <Intro url="/thor.mp4" />
+      <Card
+        url="/w1.jpg"
+        name="Endgames"
+        content="Heroes reunite post-snap, time-travel to reverse Thanos’ decimation, Tony sacrifices, Steve retires, epic conclusion unfolds."
+      />
     </div>
   );
-}
+};
+
+export default CardSwiper;
